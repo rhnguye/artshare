@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"  
+      xmlns:h="http://java.sun.com/jsf/html"  
+      xmlns:f="http://java.sun.com/jsf/core"  
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <head>
+        <title>Dashboard</title>
+        <link rel="icon" href="resources/img/favicon.ico"></link>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
+
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"></link>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+        <link href="resources/css/dashboard.css" rel="stylesheet"></link>
+        <link href="resources/css/signup.css" rel="stylesheet"></link>
+    </head>
+    <body>
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="homepage.xhtml">ArtShare</a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="dashboard.xhtml">Dashboard</a></li>
+                        <li><a href="#">Settings</a></li>
+                        <li><a href="#">Profile</a></li>
+                    </ul>
+                    <h:form class="navbar-form navbar-right">
+                        <input type="text" class="form-control" placeholder="Search..."></input>
+                    </h:form>
+                </div>
+            </div>
+        </nav>
+
+        <h:body>
+            <h:form class="form-signin col-md-7">
+                <h2 class="form-signin-heading">Edit User Information</h2>
+                First Name:
+                <h:inputText styleClass="form-control"  value ="#{userController.lb.fname}" ></h:inputText><br></br>
+                Last Name:
+                <h:inputText styleClass="form-control"  value ="#{userController.lb.lname}"></h:inputText><br></br>
+                Username:
+                <h:inputText styleClass="form-control" value ="#{userController.lb.uid}"></h:inputText><br></br>
+                Password:
+                <h:inputSecret styleClass="form-control" value ="#{userController.lb.password}"></h:inputSecret><br></br>
+                E-Mail:
+                <h:inputText styleClass="form-control"  value ="#{userController.lb.email}"></h:inputText><br></br>
+
+                <h:selectBooleanCheckbox value="#{signUpController.model.isSubbed}"></h:selectBooleanCheckbox>Would you like to subscribe/unsubscribe to our newsletter?
+
+
+                <h:commandButton styleClass="btn btn-lg btn-primary btn-block" value="Submit changes" action="#{userController.update()}"></h:commandButton>
+            </h:form>
+        </h:body>
+
+
+    </body>
+</html>

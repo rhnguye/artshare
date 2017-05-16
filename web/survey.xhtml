@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <h:head>
+        <title>Rating Page</title>
+        <link rel="icon" href="resources/img/favicon.ico"></link>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
+
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"></link>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+        <link href="resources/css/signin.css" rel="stylesheet"></link>
+    </h:head>
+    <h:body>
+        <h:form class="form-signin">
+            <h2>Survey</h2>
+            Were you able to find what you were looking for?<br/>
+            <h:selectOneRadio  value="#{galleryController.theModel.question1}">
+                <f:selectItem itemValue="yes" itemLabel="Yes" />
+                <f:selectItem itemValue="no" itemLabel="No" />
+            </h:selectOneRadio>
+            <p:growl id="messages" showDetail="true" />
+            <h:panelGrid>
+                <h:outputText value="How was your shopping experience?" />
+                <p:rating value="#{galleryController.theModel.rating}">
+                    <p:ajax event="rate" listener="#{galleryController.onrate}" update="messages" />
+                    <p:ajax event="cancel" listener="#{galleryController.oncancel}" update="messages" />
+                </p:rating>
+            </h:panelGrid>
+            Would you recommend this site to a friend?<br/>
+            <h:selectOneRadio value="#{galleryController.theModel.question2}">
+                <f:selectItem itemValue="yes" itemLabel="Yes" />
+                <f:selectItem itemValue="no" itemLabel="No" />
+            </h:selectOneRadio>
+            Additional Comments: <br/><h:inputTextarea id="yourfeedbackisvaluable" value="#{galleryController.theModel.textArea}"/>
+            <br/>
+            <h:commandButton styleClass="btn btn-lg btn-primary btn-block" id="submit" value="Submit Survey" action="#{galleryController.createSurveyProfile()}"/>
+           </h:form>
+    </h:body>
+</html>
+

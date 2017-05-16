@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+
+    <h:head>
+        <title>Confirmation</title>
+        <link rel="icon" href="resources/img/favicon.ico"></link>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
+
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"></link>
+        <link rel="stylesheet" href="css/blueimp-gallery.min.css"></link>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <link href="resources/css/signin.css" rel="stylesheet"></link>
+        <h:outputScript library="js" name="custom-script.js"/>
+    </h:head>
+    <h:body class="form-signin">
+        <h:form>
+            <h:outputText id="result" escape="false" value="#{galleryController.confirmation}"/><br/><br/>
+            Please enter your email for the receipt: <br/>Email:
+            <h:inputText styleClass="form-control" id="text" p:placeholder="email@email.com" value="#{galleryController.theModel.email}"/><br/><br/>
+
+            Please enter your credit card 16 digit number:<br/>
+            <h:inputText styleClass="form-control" id="ccNumber" p:placeholder="1111222233334444" /><br/><br/>
+            Please enter your credit card 3 digit pin number found on the back of the card:
+            <h:inputText styleClass="form-control" id="ccPin" p:placeholder="123" /><br/><br/>
+            Please enter your address for mailing:<br/>Street:
+            <h:inputText styleClass="form-control" id="street" p:placeholder="1111 One Street" value="#{galleryController.theModel.street}"/><br/><br/>
+            City:
+            <h:inputText styleClass="form-control" id="city"  p:placeholder="Normal" value="#{galleryController.theModel.city}"/><br/><br/>
+            State:
+            <h:inputText styleClass="form-control" id="state" p:placeholder="Illinois" value="#{galleryController.theModel.state}"/><br/><br/>
+            Zip:
+            <h:inputText styleClass="form-control" id="zip" p:placeholder="61761" value="#{galleryController.theModel.zipCode}"/><br/><br/>
+
+
+
+            <h:commandButton styleClass="btn btn-lg btn-primary btn-block" id="forward" value="Confirm order" action="response.xhtml?faces-redirect=true"/><br/><br/>
+            <h:commandButton styleClass="btn btn-lg btn-primary btn-block" id="back" value="Back" action="gallery.xhtml?faces-redirect=true"/>
+
+
+        </h:form>
+    </h:body>
+</html>

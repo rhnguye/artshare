@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"  
+      xmlns:h="http://java.sun.com/jsf/html"  
+      xmlns:f="http://java.sun.com/jsf/core"  
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Gallery</title>
+        <link rel="icon" href="resources/img/favicon.ico"></link>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
+
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"></link>
+        <link rel="stylesheet" href="css/blueimp-gallery.min.css"></link>
+        <!-- this breaks galleria implementation. Why?       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>-->
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    </h:head>
+    <h:body>
+
+        <!--navbar-->
+        <div class="navbar-wrapper" id="top">
+            <div class="container">
+                <nav class="navbar navbar-inverse navbar-static-top">
+                    <div class="container">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <a class="navbar-brand" href="homepage.xhtml">ArtShare</a>
+                        </div>
+                        <div id="navbar" class="navbar-collapse collapse">
+                            <ul class="nav navbar-nav">
+                                <li class="active"><a href="homepage.xhtml">Home</a></li>
+                                <li><a href="gallery.xhtml">Gallery</a></li>
+                                <li><a href="about.xhtml">About</a></li>
+                                <li><h:link outcome="submit.xhtml" rendered="#{userController.loggedin}">Submit Art</h:link> </li>
+                                <li>
+                                    <a href="confirmation.xhtml"><img src="resources/img/cart.png"
+                                                                      alt="Shopping Cart" style="margin-left: 50%"
+                                                                      width="25" height="25" border="0" /></a>
+                                </li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle"  data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <span class="caret"></span></a>
+                                    <ul class="dropdown-menu">
+                                        <li><h:link outcome="signup.xhtml?faces-redirect=true" rendered="#{!userController.loggedin}">Sign up</h:link> </li>
+                                        <li><h:link outcome="signin.xhtml?faces-redirect=true" rendered="#{!userController.loggedin}">Sign in</h:link> </li>
+                                        <li><h:link outcome="dashboard.xhtml?faces-redirect=true" rendered="#{userController.loggedin}">Dashboard</h:link> </li>
+                                        <li role="separator" class="divider"></li>
+                                        <li><h:form><h:commandLink action="#{userController.logout()}" rendered="#{userController.loggedin}">Sign out</h:commandLink></h:form> </li>
+                                    </ul>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        
+        <!--gallery items-->
+        <div class="container">
+            
+            <div class="row row-offcanvas row-offcanvas-right">
+
+                <div class="col-xs-12 col-sm-9">
+                    <p class="pull-right visible-xs">
+                        <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
+                    </p>
+                    <div class="jumbotron">
+                        <h1>Gallery</h1>
+                        <p>Like what you have seen from the community? Buy your favorite prints today!</p>
+                    </div>
+
+                    <h:form>
+                        <p:galleria value="#{uploadController.images}" var="image" panelWidth="500" panelHeight="313" showCaption="true">
+                            <p:graphicImage name="/images/#{image}" alt="Image Description for #{image}" title="#{image}"/>
+                        </p:galleria>
+                        <br/><h:commandButton class="btn btn-default" value="View Winners"  action="#{uploadController.getWinner()}"/>&#xA0;
+                        <h:commandButton class="btn btn-default" value="View Non-Winners"  action="#{uploadController.getLoser()}"/>&#xA0;
+                        <h:commandButton class="btn btn-default" value="View All"  action="#{uploadController.init()}"/> <br/>&#xA0;<br/>
+                        <h:outputText value="Input Tag:"/>
+                        <h:inputText id="grade" value="#{uploadController.tag}"/>&#xA0;
+                        <h:commandButton class="btn btn-default" value="View By Tag"  action="#{uploadController.getByTag()}"/> <BR/>&#xA0; <br/>
+                        <h:outputText value="Price: $20 "/>
+                        <h:commandButton class="btn btn-default" value="Add to Cart"  action="#{galleryController.pic1()}" onclick="document.getElementById('spinner').style.display = 'block'"/>&#xA0;<br/>
+                    <br/></h:form>               
+                    <h:form>
+                        <h:commandButton class="btn btn-default" value="Clear Cart" id="clear" action="#{galleryController.clear()}"/>&#xA0;
+                        <h:commandButton class="btn btn-default" value="Go to Checkout" id="submit" action="#{galleryController.createProfile()}"/>
+                    </h:form>
+                </div><!--/.col-xs-12.col-sm-9-->
+            </div><!--/row-->
+            
+            <hr></hr>
+            <footer>
+                <p class="pull-right col-md-offset-4"><a href="">Back to top</a></p>
+                <p> 2016 ArtShare, Inc. <a href="">Privacy</a>  <a href="#">Terms</a></p>
+            </footer>
+        </div>
+    </h:body>
+</html>

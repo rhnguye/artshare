@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Confirm Email Verification</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            Please check the email specified and input the secret number that was sent: <br/>
+            <h:inputText id="secNum" value="#{verifyBean.userNum}"/><br/><br/>
+            <h:commandButton id="check" value="Verify">
+                <f:ajax execute="secNum" render="output"/>
+            </h:commandButton><br/>
+            <br/>
+            <h:outputText id="output" escape="false" value="#{verifyBean.result}"/>
+        </h:form>
+    </h:body>
+</html>

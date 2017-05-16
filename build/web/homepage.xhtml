@@ -1,0 +1,169 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"  
+      xmlns:h="http://java.sun.com/jsf/html"  
+      xmlns:f="http://java.sun.com/jsf/core"  
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>ArtShare Home</title>
+        <link rel="icon" href="resources/img/favicon.ico"></link>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
+
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"></link>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+        <link href="resources/css/carousel.css" rel="stylesheet"></link>
+
+        <!-- Google adsense code -->
+        <script async="async" src="https://www.google.com/adsense/search/ads.js"></script>
+        <script type="text/javascript" charset="utf-8">
+            (function (g, o) {
+                g[o] = g[o] || function () {
+                    (g[o]['q'] = g[o]['q'] || []).push(
+                            arguments)
+                }, g[o]['t'] = 1 * new Date
+            })(window, '_googCsa');
+        </script>
+
+    </h:head>
+    <h:body>
+        <!--navbar-->
+        <div class="navbar-wrapper" id="top">
+            <div class="container">
+                <nav class="navbar navbar-inverse navbar-static-top">
+                    <div class="container">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <a class="navbar-brand" href="homepage.xhtml">ArtShare</a>
+                        </div>
+                        <div id="navbar" class="navbar-collapse collapse">
+                            <ul class="nav navbar-nav">
+                                <li class="active"><a href="homepage.xhtml">Home</a></li>
+                                <li><a href="gallery.xhtml">Gallery</a></li>
+                                <li><a href="about.xhtml">About</a></li>
+                                <li><h:link outcome="submit.xhtml" rendered="#{userController.loggedin}">Submit Art</h:link> </li>
+                                <li>
+                                    <a href="confirmation.xhtml"><img src="resources/img/cart.png"
+                                                                      alt="Shopping Cart" style="margin-left: 50%"
+                                                                      width="25" height="25" border="0" /></a>
+                                </li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle"  data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <span class="caret"></span></a>
+                                    <ul class="dropdown-menu">
+                                        <li><h:link outcome="signup.xhtml?faces-redirect=true" rendered="#{!userController.loggedin}">Sign up</h:link> </li>
+                                        <li><h:link outcome="signin.xhtml?faces-redirect=true" rendered="#{!userController.loggedin}">Sign in</h:link> </li>
+                                        <li><h:link outcome="dashboard.xhtml?faces-redirect=true" rendered="#{userController.loggedin}">Dashboard</h:link> </li>
+                                        <li role="separator" class="divider"></li>
+                                        <li><h:form><h:commandLink action="#{userController.logout()}" rendered="#{userController.loggedin}">Sign out</h:commandLink></h:form> </li>
+                                    </ul>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+
+        <!--carousel implementation -->
+        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                <li data-target="#myCarousel" data-slide-to="1"></li>
+                <li data-target="#myCarousel" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner" role="listbox">
+                <div class="item active">
+                    <img class="first-slide" src="resources/img/img1.jpg" alt="First slide"></img>
+                    <div class="container">
+                        <div class="carousel-caption">
+                            <h1>Welcome to ArtShare!</h1>
+                            <p>Channel your inner Picasso</p>
+                            <p><a class="btn btn-lg btn-primary" href="signin.xhtml" role="button">Sign up today</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <img class="second-slide" src="resources/img/img2.jpg" alt="Second slide"></img>
+                    <div class="container">
+                        <div class="carousel-caption">
+                            <h1>Browse the Gallery</h1>
+                            <p>Look at past submitted artworks!</p>
+                            <p><a class="btn btn-lg btn-primary" href="gallery.xhtml" role="button">Browse Gallery</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <img class="third-slide" src="resources/img/img3.png" alt="Third slide"></img>
+                    <div class="container">
+                        <div class="carousel-caption">
+                            <h1>Everyone can art!</h1>
+                            <p>All it takes is passion</p>
+                            <p><a class="btn btn-lg btn-primary" href="about.xhtml" role="button">About Us</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+
+        <!-- feature content -->
+        <hr class="featurette-divider"></hr>
+
+        <div class="row featurette col-md-offset-4" id ="about">
+            <div class="col-md-7">
+                <h2 class="featurette-heading">Share your art with the world! </h2>
+                <p class="lead">Let the world see your art. Get started with ArtShare today, either as a free member, or as an ArtShare Plus member.</p>
+            </div>
+        </div>
+
+        <hr class="featurette-divider"></hr>
+
+        <div id='afscontainer1' align="center" class="col-md-offset-4"></div>
+        <!-- Google adsense script-->
+        <script type="text/javascript" charset="utf-8">
+
+            var pageOptions = {
+                "pubId": "pub-9616389000213823", // Make sure this the correct client ID!
+                "query": "art",
+                "adPage": 1,
+                "adtest": "on",
+                "location": false,
+                "sellerRatings": false
+            };
+
+            var adblock1 = {
+                "container": "afscontainer1",
+                "width": "700",
+                "number": 2
+            };
+
+            _googCsa('ads', pageOptions, adblock1);
+
+        </script>
+
+        <!--footer content-->
+        <footer>
+            <p class="pull-right col-md-offset-4"><a href="">Back to top</a></p>
+            <p> 2016 ArtShare, Inc. <a href="">Privacy</a>  <a href="#">Terms</a></p>
+        </footer>
+    </h:body>
+</html>
+

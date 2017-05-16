@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Submit Art</title>
+        <link rel="icon" href="resources/img/favicon.ico"></link>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
+
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"></link>
+        <link rel="stylesheet" href="css/blueimp-gallery.min.css"></link>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <link href="resources/css/signin.css" rel="stylesheet"></link>
+    </h:head>
+    <h:body>
+
+       <!--navbar-->
+        <div class="navbar-wrapper" id="top">
+            <div class="container">
+                <nav class="navbar navbar-inverse navbar-static-top">
+                    <div class="container">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <a class="navbar-brand" href="homepage.xhtml">ArtShare</a>
+                        </div>
+                        <div id="navbar" class="navbar-collapse collapse">
+                            <ul class="nav navbar-nav">
+                                <li class="active"><a href="homepage.xhtml">Home</a></li>
+                                <li><a href="gallery.xhtml">Gallery</a></li>
+                                <li><a href="about.xhtml">About</a></li>
+                                <li><h:link outcome="submit.xhtml" rendered="#{userController.loggedin}">Submit Art</h:link> </li>
+                                <li>
+                                    <a href="confirmation.xhtml"><img src="resources/img/cart.png"
+                                                                      alt="Shopping Cart" style="margin-left: 50%"
+                                                                      width="25" height="25" border="0" /></a>
+                                </li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle"  data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <span class="caret"></span></a>
+                                    <ul class="dropdown-menu">
+                                        <li><h:link outcome="signup.xhtml?faces-redirect=true" rendered="#{!userController.loggedin}">Sign up</h:link> </li>
+                                        <li><h:link outcome="signin.xhtml?faces-redirect=true" rendered="#{!userController.loggedin}">Sign in</h:link> </li>
+                                        <li><h:link outcome="dashboard.xhtml?faces-redirect=true" rendered="#{userController.loggedin}">Dashboard</h:link> </li>
+                                        <li role="separator" class="divider"></li>
+                                        <li><h:form><h:commandLink action="#{userController.logout()}" rendered="#{userController.loggedin}">Sign out</h:commandLink></h:form> </li>
+                                    </ul>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div> 
+
+
+        <!-- form to upload image -->
+        <h:form class="form-signin" enctype = "multipart/form-data" id="form">
+            <h:inputFile id="file" value="#{uploadController.theModel.tempFile}" validator="#{uploadController.validateFile}"/> <br></br>
+            Input Grade: <h:inputText styleClass="form-control" id="grade" value="#{uploadController.theModel.grade}"/> <br></br>
+            Input Tag: <h:inputText styleClass="form-control" id="tag" value="#{uploadController.theModel.tag}"/><br></br>
+            Name your Submission: <h:inputText styleClass="form-control" id="name" value="#{uploadController.theModel.name}"/><br></br>
+            <h:commandButton styleClass="btn btn-lg btn-primary btn-block" value="Upload" action="#{uploadController.createImage}"/>
+        </h:form>
+    </h:body>
+</html>
+
